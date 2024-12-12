@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balla Tejus Vardhan - Welcome to Miftah</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #4682B4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            z-index: 10;
+            transform: rotateX(10deg);
+            opacity: 0;
+            transition: all 1.5s ease;
+        }
+        .container.visible {
+            opacity: 1;
+            transform: rotateX(0);
+        }
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .intro {
+            color: #34495e;
+            line-height: 1.6;
+        }
+        .role {
+            color: #2980b9;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="welcomeContainer">
+        <h1>Hello, Miftah Team!</h1>
+        <div class="intro">
+            <p>I'm Balla Tejus Vardhan, joining the web development team. I'm excited to collaborate with all of you and work together to achieve our team's goals.</p>
+            <p class="role">Web Development Team</p>
+        </div>
+    </div>
+
+    <script>
+        function createSnowflakes() {
+            const snowContainer = document.body;
+            const snowflakeCount = 150;
+
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+
+                // Randomize snowflake properties
+                const size = Math.random() * 3 + 1;
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.top = `-10px`;
+                snowflake.style.opacity = Math.random();
+
+                // Animate snowflake
+                animateSnowflake(snowflake);
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        function animateSnowflake(snowflake) {
+            const animationDuration = Math.random() * 10 + 5;
+            const horizontalDrift = Math.random() * 100 - 50;
+
+            snowflake.animate([
+                { 
+                    transform: `translateY(0vh) translateX(0px)`,
+                    opacity: 1
+                },
+                { 
+                    transform: `translateY(110vh) translateX(${horizontalDrift}px)`,
+                    opacity: 0.2
+                }
+            ], {
+                duration: animationDuration * 1000,
+                delay: Math.random() * 5000,
+                iterations: Infinity,
+                easing: 'linear'
+            });
+        }
+
+        function showWelcome() {
+            const container = document.getElementById('welcomeContainer');
+            container.classList.add('visible');
+        }
+
+        // Initialize
+        createSnowflakes();
+        setTimeout(showWelcome, 500);
+    </script>
+</body>
+</html>
